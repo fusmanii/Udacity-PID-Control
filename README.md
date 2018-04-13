@@ -46,3 +46,27 @@ After starting the simulation, pick the `Project 4: PID Controller`
 This how the simulation will look like:
 
 ![image](./images/test.png)
+
+## Rubric Points
+
+#### Describe the effect of the P, I, D component of the PID algorithm in your implementation.
+
+P, the proportional, component had a direct effect on the steering angle. It causes the car to steer proportionatly to the cars distance to lane center: if the car is far away from the lane center then it steers hard to wards the center and steers slighty if close to the center.
+
+I, the integral, component corrects the incorrect convergence of a PD controller. For example around the corners the I component really helped reduce the CTE.
+
+D, the differential, will counteract the P component from over shooting passed the center. Based on the rate of change of CTE, the D component smooths out the cars approach to center.
+
+#### Discusses how you chose the final hyperparameters (P, I, D coefficients).
+
+I tuned the parameters manually. After doing some reading online, I came accross an algorithm for tuning the PID parameters manually. The algorithm goes as follows:
+
+1. Set all gains to zero.
+2. Increase the P gain until the response to a disturbance is steady oscillation.
+3. Increase the D gain until the the oscillations go away (i.e. it's critically damped).
+4. Repeat steps 2 and 3 until increasing the D gain does not stop the oscillations.
+5. Set P and D to the last stable values.
+6. Increase the I gain until it brings you to the setpoint with the number of oscillations desired (normally zero but a quicker response can be had if you don't mind a couple oscillations of overshoot)
+
+
+I also implemented a PID controller for the throthle with CTE as the error. The reason CTE is the error is because we want the car's speed to decrease if its too far from the center. 
