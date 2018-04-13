@@ -53,7 +53,7 @@ This how the simulation will look like:
 
 P, the proportional, component had a direct effect on the steering angle. It causes the car to steer proportionatly to the cars distance to lane center: if the car is far away from the lane center then it steers hard to wards the center and steers slighty if close to the center.
 
-I, the integral, component corrects the incorrect convergence of a PD controller. For example around the corners the I component really helped reduce the CTE.
+I, the integral, component corrects the incorrect convergence of a PD controller. For this implementation I noticed around the corners the I component really helped reduce the CTE.
 
 D, the differential, will counteract the P component from over shooting passed the center. Based on the rate of change of CTE, the D component smooths out the cars approach to center.
 
